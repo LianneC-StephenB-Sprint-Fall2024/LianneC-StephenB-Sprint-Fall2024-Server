@@ -1,4 +1,4 @@
-package Airport;
+package Passenger;
 
 import javax.persistence.*;
 
@@ -30,4 +30,9 @@ public class Passenger {
 
     public String getPhoneNumber() { return phoneNumber; }
     public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
+
+    @Override
+    public String toString() {
+        return "Passenger{id=" + id + ", firstName='" + firstName + "', lastName='" + lastName + "', phoneNumber='" + phoneNumber + "'}";
+    }
 }

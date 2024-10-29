@@ -1,4 +1,4 @@
-package Airport;
+package City;
 
 import javax.persistence.*;
 
@@ -30,4 +30,10 @@ public class City {
 
     public Integer getPopulation() { return population; }
     public void setPopulation(Integer population) { this.population = population; }
+
+    @Override
+    public String toString() {
+        return "City{id=" + id + ", name='" + name + "', state='" + state + "', population=" + population + "}";
+    }
 }
+
