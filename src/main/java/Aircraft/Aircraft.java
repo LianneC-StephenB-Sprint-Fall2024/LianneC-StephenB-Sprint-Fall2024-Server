@@ -1,4 +1,4 @@
-package Airport;
+package Aircraft;
 
 import javax.persistence.*;
 
@@ -30,4 +30,9 @@ public class Aircraft {
 
     public Integer getNumberOfPassengers() { return numberOfPassengers; }
     public void setNumberOfPassengers(Integer numberOfPassengers) { this.numberOfPassengers = numberOfPassengers; }
+
+    @Override
+    public String toString() {
+        return "Aircraft{id=" + id + ", type='" + type + "', airlineName='" + airlineName + "', numberOfPassengers=" + numberOfPassengers + "}";
+    }
 }
