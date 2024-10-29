@@ -1,4 +1,4 @@
-package City;
+package com.keyin.City;
 
 import javax.persistence.*;
 
