@@ -1,4 +1,4 @@
-package Aircraft;
+package com.keyin.Aircraft;
 
 import javax.persistence.*;
 

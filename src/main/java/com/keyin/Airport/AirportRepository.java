@@ -1,4 +1,4 @@
-package Airport;
+package com.keyin.Airport;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

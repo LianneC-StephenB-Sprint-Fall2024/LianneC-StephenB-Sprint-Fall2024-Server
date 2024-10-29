@@ -1,5 +1,8 @@
 package Airport;
 
+import com.keyin.Airport.Airport;
+import com.keyin.Airport.AirportController;
+import com.keyin.Airport.AirportService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
