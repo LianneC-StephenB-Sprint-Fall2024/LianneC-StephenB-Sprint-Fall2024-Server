@@ -1,4 +1,4 @@
-package Airport;
+package com.keyin;
 
 import com.keyin.Airport.Airport;
 import com.keyin.Airport.AirportController;
