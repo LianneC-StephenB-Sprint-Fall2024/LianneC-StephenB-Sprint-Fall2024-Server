@@ -1,8 +1,8 @@
 package com.keyin;
 
-import com.keyin.Passenger.PassengerController;
-import com.keyin.Passenger.PassengerService;
-import com.keyin.Passenger.Passenger;
+import com.keyin.passenger.PassengerController;
+import com.keyin.passenger.PassengerService;
+import com.keyin.passenger.Passenger;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;

@@ -1,8 +1,8 @@
 package com.keyin;
 
-import com.keyin.Airport.Airport;
-import com.keyin.Airport.AirportController;
-import com.keyin.Airport.AirportService;
+import com.keyin.airport.Airport;
+import com.keyin.airport.AirportController;
+import com.keyin.airport.AirportService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;

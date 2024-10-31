@@ -1,4 +1,4 @@
-package com.keyin.Airport;
+package com.keyin.airport;
 
 import javax.persistence.*;
 

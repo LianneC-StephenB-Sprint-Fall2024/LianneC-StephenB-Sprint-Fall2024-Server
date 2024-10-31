@@ -1,4 +1,4 @@
-package com.keyin.City;
+package com.keyin.city;
 
 import javax.persistence.*;
 
@@ -36,4 +36,3 @@ public class City {
         return "City{id=" + id + ", name='" + name + "', state='" + state + "', population=" + population + "}";
     }
 }
-
