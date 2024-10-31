@@ -1,4 +1,4 @@
-package com.keyin.Airport;
+package com.keyin.airport;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;

@@ -1,4 +1,4 @@
-package com.keyin.Passenger;
+package com.keyin.passenger;
 
 import javax.persistence.*;
 

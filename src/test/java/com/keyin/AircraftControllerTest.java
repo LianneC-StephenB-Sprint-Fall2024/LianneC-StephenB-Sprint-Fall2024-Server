@@ -1,8 +1,8 @@
 package com.keyin;
 
-import com.keyin.Aircraft.AircraftController;
-import com.keyin.Aircraft.AircraftService;
-import com.keyin.Aircraft.Aircraft;
+import com.keyin.aircraft.AircraftController;
+import com.keyin.aircraft.AircraftService;
+import com.keyin.aircraft.Aircraft;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;

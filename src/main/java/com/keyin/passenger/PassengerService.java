@@ -1,4 +1,4 @@
-package com.keyin.Passenger;
+package com.keyin.passenger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

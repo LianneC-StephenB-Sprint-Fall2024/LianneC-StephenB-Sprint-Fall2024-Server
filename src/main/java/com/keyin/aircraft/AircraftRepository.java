@@ -1,8 +1,8 @@
-package com.keyin.Passenger;
+package com.keyin.aircraft;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PassengerRepository extends JpaRepository<Passenger, Integer> {
+public interface AircraftRepository extends JpaRepository<Aircraft, Integer> {
 }

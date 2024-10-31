@@ -1,4 +1,4 @@
-package com.keyin.City;
+package com.keyin.city;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
