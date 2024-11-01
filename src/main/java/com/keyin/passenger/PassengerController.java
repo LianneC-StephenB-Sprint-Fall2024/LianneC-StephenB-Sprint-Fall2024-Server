@@ -19,7 +19,7 @@ public class PassengerController {
     }
 
     @GetMapping("/{id}")
-    public Passenger getPassengerById(@PathVariable Integer id) {
+    public Passenger getPassengerById(@PathVariable Integer id) { // Change to Long
         return passengerService.getPassengerById(id);
     }
 
@@ -29,12 +29,12 @@ public class PassengerController {
     }
 
     @PutMapping("/{id}")
-    public Passenger updatePassenger(@PathVariable Integer id, @RequestBody Passenger passenger) {
+    public Passenger updatePassenger(@PathVariable Integer id, @RequestBody Passenger passenger) { // Change to Long
         return passengerService.updatePassenger(id, passenger);
     }
 
     @DeleteMapping("/{id}")
-    public void deletePassenger(@PathVariable Integer id) {
+    public void deletePassenger(@PathVariable Integer id) { // Change to Long
         passengerService.deletePassenger(id);
     }
 }

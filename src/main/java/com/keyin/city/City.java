@@ -1,9 +1,9 @@
 package com.keyin.city;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.keyin.airport.Airport;
+import jakarta.persistence.*;
+import java.util.List;
+
 
 @Entity
 public class City {
@@ -13,6 +13,9 @@ public class City {
     private String name;
     private String state;
     private Integer population;
+
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
+    private List<Airport> airports;
 
     public City() {}
 
@@ -34,7 +37,10 @@ public class City {
     public Integer getPopulation() { return population; }
     public void setPopulation(Integer population) { this.population = population; }
 
-    @Override
+    public List<Airport> getAirports() { return airports; }
+    public void setAirports(List<Airport> airports) { this.airports = airports; }
+
+        @Override
     public String toString() {
         return "City{id=" + id + ", name='" + name + "', state='" + state + "', population=" + population + "}";
     }

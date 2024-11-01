@@ -1,5 +1,6 @@
 package com.keyin.city;
 
+import com.keyin.airport.Airport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +22,12 @@ public class CityController {
     @GetMapping("/{id}")
     public City getCityById(@PathVariable Integer id) {
         return cityService.getCityById(id);
+    }
+
+    // New endpoint to get airports within a city
+    @GetMapping("/{id}/airports")
+    public List<Airport> getAirportsByCity(@PathVariable Integer id) {
+        return cityService.getAirportsByCity(id);
     }
 
     @PostMapping

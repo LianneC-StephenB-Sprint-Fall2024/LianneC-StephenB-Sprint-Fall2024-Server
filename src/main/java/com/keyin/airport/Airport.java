@@ -1,9 +1,11 @@
 package com.keyin.airport;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.keyin.city.City;
+import com.keyin.aircraft.Aircraft;
+import jakarta.persistence.*;
+
+import java.util.List;
+
 
 @Entity
 public class Airport {
@@ -12,6 +14,15 @@ public class Airport {
     private Integer id;
     private String name;
     private String code;
+
+    // Relationship with City
+    @ManyToOne
+    @JoinColumn(name = "city_id", nullable = false)
+    private City city;
+
+    // Relationship with Aircraft
+    @ManyToMany(mappedBy = "airports")
+    private List<Aircraft> aircraft;
 
     public Airport() {}
 
@@ -28,4 +39,10 @@ public class Airport {
 
     public String getCode() { return code; }
     public void setCode(String code) { this.code = code; }
+
+    public City getCity() { return city; }
+    public void setCity(City city) { this.city = city; }
+
+    public List<Aircraft> getAircraft() { return aircraft; }
+    public void setAircraft(List<Aircraft> aircraft) { this.aircraft = aircraft; }
 }
