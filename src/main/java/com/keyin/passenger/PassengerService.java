@@ -24,7 +24,7 @@ public class PassengerService {
         return passengerRepository.save(passenger);
     }
 
-    public Passenger updatePassenger(Integer id, Passenger passengerDetails) {
+    public Passenger updatePassenger(Integer id, Passenger passengerDetails) { // Change to Long
         Optional<Passenger> passengerOptional = passengerRepository.findById(id);
 
         if (passengerOptional.isPresent()) {
@@ -32,13 +32,15 @@ public class PassengerService {
             existingPassenger.setFirstName(passengerDetails.getFirstName());
             existingPassenger.setLastName(passengerDetails.getLastName());
             existingPassenger.setPhoneNumber(passengerDetails.getPhoneNumber());
+            existingPassenger.setCity(passengerDetails.getCity()); // Update city
+            existingPassenger.setAircraftList(passengerDetails.getAircraftList()); // Update aircraft list
             return passengerRepository.save(existingPassenger);
         } else {
             return null; // Handle 'not found' gracefully in real scenarios
         }
     }
 
-    public void deletePassenger(Integer id) {
+    public void deletePassenger(Integer id) { // Change to Long
         passengerRepository.deleteById(id);
     }
 }

@@ -1,5 +1,6 @@
 package com.keyin.city;
 
+import com.keyin.airport.Airport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,11 @@ public class CityService {
         return cityRepository.findById(id).orElse(null);
     }
 
+    public List<Airport> getAirportsByCity(Integer id) {
+        Optional<City> city = cityRepository.findById(id);
+        return city.map(City::getAirports).orElse(null);
+    }
+
     public City createCity(City city) {
         return cityRepository.save(city);
     }
@@ -34,7 +40,7 @@ public class CityService {
             existingCity.setPopulation(cityDetails.getPopulation());
             return cityRepository.save(existingCity);
         } else {
-            return null; // Handle 'not found' gracefully in real scenarios
+            return null;
         }
     }
 

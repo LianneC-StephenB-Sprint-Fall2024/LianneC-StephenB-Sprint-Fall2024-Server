@@ -1,9 +1,10 @@
 package com.keyin.passenger;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.keyin.aircraft.Aircraft;
+import com.keyin.city.City;
+import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Passenger {
@@ -13,6 +14,18 @@ public class Passenger {
     private String firstName;
     private String lastName;
     private String phoneNumber;
+
+    @ManyToOne
+    @JoinColumn(name = "city_id")
+    private City city;
+
+    @ManyToMany
+    @JoinTable(
+            name = "passenger_aircraft",
+            joinColumns = @JoinColumn(name = "passenger_id"),
+            inverseJoinColumns = @JoinColumn(name = "aircraft_id")
+    )
+    private List<Aircraft> aircraftList = new ArrayList<>();
 
     public Passenger() {}
 
@@ -33,6 +46,13 @@ public class Passenger {
 
     public String getPhoneNumber() { return phoneNumber; }
     public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
+
+    public City getCity() { return city; }
+    public void setCity(City city) { this.city = city; }
+
+    public List<Aircraft> getAircraftList() { return aircraftList; }
+    public void setAircraftList(List<Aircraft> aircraftList) { this.aircraftList = aircraftList; }
+
 
     @Override
     public String toString() {
