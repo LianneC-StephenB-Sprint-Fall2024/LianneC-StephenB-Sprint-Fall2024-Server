@@ -1,10 +1,12 @@
 package com.keyin.passenger;
 
 import com.keyin.aircraft.Aircraft;
+import com.keyin.airport.Airport;
 import com.keyin.city.City;
 import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 public class Passenger {
@@ -26,6 +28,11 @@ public class Passenger {
             inverseJoinColumns = @JoinColumn(name = "aircraft_id")
     )
     private List<Aircraft> aircraftList = new ArrayList<>();
+
+    // New field to store the associated airport
+    @ManyToOne
+    @JoinColumn(name = "airport_id") // Adjust the column name as necessary
+    private Airport airport;
 
     public Passenger() {}
 
@@ -53,6 +60,23 @@ public class Passenger {
     public List<Aircraft> getAircraftList() { return aircraftList; }
     public void setAircraftList(List<Aircraft> aircraftList) { this.aircraftList = aircraftList; }
 
+    public Integer getAirportId() {
+        return airport != null ? airport.getId() : null; // Returns null if airport is not set
+    }
+
+    // New getter for airport
+    public Airport getAirport() {
+        return airport;
+    }
+
+    public void setAirport(Airport airport) {
+        this.airport = airport;
+    }
+
+    // Method to return the full name
+    public String getName() {
+        return firstName + " " + lastName;
+    }
 
     @Override
     public String toString() {
