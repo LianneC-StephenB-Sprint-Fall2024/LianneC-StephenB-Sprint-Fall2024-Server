@@ -72,3 +72,85 @@ Unit Testing
 Mock HTTP Responses for Client Testing
 
 To fully test the client, use mocked HTTP responses in JUnit tests to simulate API server responses. This ensures the client logic works independently of the actual server.
+
+
+
+API Documentation
+
+Overview
+This API allows you to interact with data related to airports, aircraft, cities, and passengers. The endpoints provide CRUD operations for each of these entities, along with custom queries for specific questions.
+
+Endpoints
+1. Airports
+Get All Airports
+   Endpoint: GET /airports
+   Description: Retrieve a list of all airports.
+
+Get Airport ID
+   Endpoint: GET /airports/{id}
+   Description: Retrieve a specific airport by its ID
+
+Create Airport
+   Endpoint: POST /airports
+   Description: Add a new airport to the database
+
+Update Airport
+   Endpoint: PUT /airports/{id}
+   Description: Update the details of an existing airport.
+
+Delete Airport
+   Endpoint: DELETE /airports/{id}
+   Description: Delete a specific airport by its ID.
+
+
+2. Aircraft
+Get All Aircraft
+   Endpoint: GET /aircraft
+   Description: Retrieve a list of all aircraft.
+
+Get Aircraft by ID
+   Endpoint: GET /aircraft/{id}
+   Description: Retrieve a specific aircraft by its ID.
+
+3. Passengers
+Get All Passengers
+   Endpoint: GET /passengers
+   Description: Retrieve a list of all passengers.
+
+Get Passenger by ID
+   Endpoint: GET /passengers/{id}
+   Description: Retrieve a specific passenger by their ID.
+
+4. Cities
+Get All Cities
+   Endpoint: GET /cities
+   Description: Retrieve a list of all cities.
+
+Get City by ID
+   Endpoint: GET /cities/{id}
+   Description: Retrieve a specific city by its ID
+
+
+Custom Queries
+
+What airports are in what cities?
+   Endpoint: GET /custom/airportsByCity
+   Description: Retrieve airports grouped by their respective cities
+
+List all aircraft passengers have traveled on
+   Endpoint: GET /custom/aircraftByPassenger
+   Description: Retrieve a list of aircraft associated with each passenger.
+
+Which airports can aircraft take off from and land at?
+   Endpoint: GET /custom/airportsForAircraft
+   Description: Retrieve airports where each aircraft can operate.
+
+What airports have passengers used?
+   Endpoint: GET /custom/airportsByPassenger
+   Description: Retrieve airports used by each passenger.
+
+
+Error Codes
+400 Bad Request: Invalid input or malformed request.
+404 Not Found: Resource not found (e.g., ID does not exist).
+500 Internal Server Error: Unexpected server error.
