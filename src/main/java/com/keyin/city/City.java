@@ -1,5 +1,7 @@
 package com.keyin.city;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.keyin.airport.Airport;
 import jakarta.persistence.*;
 import java.util.List;
@@ -14,8 +16,16 @@ public class City {
     private String state;
     private Integer population;
 
-    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
+    // Relationship with Airport
+
+
+    @JsonIgnore // This field will be ignored during serialization
+    @OneToMany(mappedBy = "city")
     private List<Airport> airports;
+
+    //@OneToMany(mappedBy = "city")
+    //@JsonManagedReference  // Marks this side as the parent side
+    //private List<Airport> airports;
 
     public City() {}
 

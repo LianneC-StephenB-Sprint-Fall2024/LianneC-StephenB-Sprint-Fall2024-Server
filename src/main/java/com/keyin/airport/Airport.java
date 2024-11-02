@@ -1,5 +1,6 @@
 package com.keyin.airport;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.keyin.city.City;
 import com.keyin.aircraft.Aircraft;
 import jakarta.persistence.*;
@@ -14,10 +15,13 @@ public class Airport {
     private Integer id;
     private String name;
     private String code;
+    private String location;
+
 
     // Relationship with City
     @ManyToOne
     @JoinColumn(name = "city_id", nullable = false)
+    //@JsonBackReference  // Avoids recursion
     private City city;
 
     // Relationship with Aircraft
@@ -29,6 +33,8 @@ public class Airport {
     public Airport(String name, String code) {
         this.name = name;
         this.code = code;
+        this.location = location;
+        this.city = city;
     }
 
     public Integer getId() { return id; }
@@ -42,6 +48,12 @@ public class Airport {
 
     public City getCity() { return city; }
     public void setCity(City city) { this.city = city; }
+
+    public String getLocation() {
+        return location; }
+
+    public void setLocation(String location) {
+        this.location = location; }
 
     public List<Aircraft> getAircraft() { return aircraft; }
     public void setAircraft(List<Aircraft> aircraft) { this.aircraft = aircraft; }
