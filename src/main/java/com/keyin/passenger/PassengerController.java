@@ -29,8 +29,8 @@ public class PassengerController {
     }
 
     @PutMapping("/{id}")
-    public Passenger updatePassenger(@PathVariable Integer id, @RequestBody Passenger passenger) { // Change to Long
-        return passengerService.updatePassenger(id, passenger);
+    public Passenger updatePassenger(@PathVariable Integer id, @RequestBody Passenger passengerDetails) {
+        return passengerService.updatePassenger(id, passengerDetails);
     }
 
     @DeleteMapping("/{id}")

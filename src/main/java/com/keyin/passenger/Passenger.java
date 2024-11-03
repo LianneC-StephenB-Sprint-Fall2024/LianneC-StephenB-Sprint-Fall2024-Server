@@ -1,5 +1,7 @@
 package com.keyin.passenger;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.keyin.aircraft.Aircraft;
 import com.keyin.airport.Airport;
 import com.keyin.city.City;
@@ -27,6 +29,7 @@ public class Passenger {
             joinColumns = @JoinColumn(name = "passenger_id"),
             inverseJoinColumns = @JoinColumn(name = "aircraft_id")
     )
+    @JsonBackReference
     private List<Aircraft> aircraftList = new ArrayList<>();
 
     // New field to store the associated airport
@@ -62,6 +65,15 @@ public class Passenger {
 
     public Integer getAirportId() {
         return airport != null ? airport.getId() : null; // Returns null if airport is not set
+    }
+
+    public void setAirportId(Integer airportId) {
+        if (airportId != null) {
+            this.airport = new Airport();
+            this.airport.setId(airportId);
+        } else {
+            this.airport = null; // Set to null if no ID is provided
+        }
     }
 
     // New getter for airport

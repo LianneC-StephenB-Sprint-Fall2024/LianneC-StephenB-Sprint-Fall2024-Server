@@ -66,4 +66,9 @@ public class AircraftController {
     public Aircraft addPassengerToAircraft(@PathVariable Integer id, @PathVariable Integer passengerId) {
         return aircraftService.addPassengerToAircraft(id, passengerId);
     }
+
+    @PutMapping("/{id}/airports")
+    public Aircraft updateAircraftAirports(@PathVariable Integer id, @RequestBody List<Integer> airportIds) {
+        return aircraftService.updateAircraftAirports(id, airportIds);
+    }
 }

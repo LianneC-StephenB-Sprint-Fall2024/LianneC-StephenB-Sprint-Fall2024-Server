@@ -26,6 +26,7 @@ public class Airport {
 
     // Relationship with Aircraft
     @ManyToMany(mappedBy = "airports")
+    @JsonBackReference
     private List<Aircraft> aircraft;
 
     public Airport() {}

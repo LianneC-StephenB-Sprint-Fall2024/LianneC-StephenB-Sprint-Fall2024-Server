@@ -51,6 +51,10 @@ public class AirportService {
         airportRepository.deleteById(airportId);
     }
 
+    public Airport findById(Integer id) {
+        return airportRepository.findById(id).orElse(null);
+    }
+
     public Airport findAirportByNameCodeAndCity(String name, String code, Integer cityId) {
         // Implement the logic to find the airport
         return airportRepository.findByNameAndCodeAndCityId(name, code, cityId)

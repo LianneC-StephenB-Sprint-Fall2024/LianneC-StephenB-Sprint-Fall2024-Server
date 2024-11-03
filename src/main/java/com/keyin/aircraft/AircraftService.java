@@ -4,7 +4,9 @@ import com.keyin.airport.Airport;
 import com.keyin.airport.AirportRepository;
 import com.keyin.passenger.Passenger;
 import com.keyin.passenger.PassengerRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -90,5 +92,21 @@ public class AircraftService {
             return aircraftRepository.save(aircraft);
         }
         return null; // Handle case when aircraft or passenger not found
+    }
+
+    @Transactional
+    public Aircraft updateAircraftAirports(Integer aircraftId, List<Integer> airportIds) {
+        Aircraft aircraft = aircraftRepository.findById(aircraftId)
+                .orElseThrow(() -> new ResourceNotFoundException("Aircraft not found with id: " + aircraftId));
+
+        // Clear the existing airports if necessary (optional, based on requirements)
+        aircraft.getAirports().clear();
+
+        // Fetch and add each airport by its ID
+        List<Airport> airports = airportRepository.findAllById(airportIds);
+        aircraft.getAirports().addAll(airports);
+
+        // Save the aircraft with the updated list of airports
+        return aircraftRepository.save(aircraft);
     }
 }

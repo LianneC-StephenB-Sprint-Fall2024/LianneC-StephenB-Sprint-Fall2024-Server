@@ -3,6 +3,7 @@ package com.keyin.airport;
 import com.keyin.city.City;
 import com.keyin.city.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,6 +24,16 @@ public class AirportController {
     @GetMapping
     public Iterable<Airport> getListOfAirportsInDB() {
         return airportService.getAllAirports();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Airport> getAirportById(@PathVariable Integer id) {
+        Airport airport = airportService.findById(id);
+        if (airport != null) {
+            return ResponseEntity.ok(airport);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PostMapping

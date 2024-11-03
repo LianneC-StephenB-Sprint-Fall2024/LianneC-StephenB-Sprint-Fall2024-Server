@@ -1,5 +1,7 @@
 package com.keyin.aircraft;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.keyin.airport.Airport;
 import com.keyin.passenger.Passenger;
 
@@ -27,10 +29,12 @@ public class Aircraft {
             joinColumns = @JoinColumn(name = "aircraft_id"),
             inverseJoinColumns = @JoinColumn(name = "airport_id")
     )
+    @JsonManagedReference
     private List<Airport> airports = new ArrayList<>();
 
     // Relationship with Passenger (Many-to-Many)
     @ManyToMany(mappedBy = "aircraftList")
+    @JsonManagedReference
     private List<Passenger> passengers = new ArrayList<>();
 
 
