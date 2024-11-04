@@ -36,7 +36,7 @@ public class CityService {
         if (cityOptional.isPresent()) {
             City existingCity = cityOptional.get();
             existingCity.setName(cityDetails.getName());
-            existingCity.setState(cityDetails.getState());
+            existingCity.setCountry(cityDetails.getCountry());
             existingCity.setPopulation(cityDetails.getPopulation());
             return cityRepository.save(existingCity);
         } else {

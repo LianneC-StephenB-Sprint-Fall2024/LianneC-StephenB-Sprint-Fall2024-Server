@@ -15,6 +15,7 @@ import java.util.List;
 
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;  // Added for logging
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(CityController.class)
@@ -34,6 +35,7 @@ public class CityControllerTest {
         ));
 
         mockMvc.perform(get("/api/cities"))
+                .andDo(print())  // Added to log the response
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$[0].name").value("New York"))
@@ -52,6 +54,7 @@ public class CityControllerTest {
         when(cityService.getCityById(1)).thenReturn(city);
 
         mockMvc.perform(get("/api/cities/1"))
+                .andDo(print())  // Added to log the response
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.name").value("San Francisco"))
@@ -71,6 +74,7 @@ public class CityControllerTest {
         mockMvc.perform(post("/api/cities")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(cityJson))
+                .andDo(print())  // Added to log the response
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value("Chicago"))
                 .andExpect(jsonPath("$.country").value("USA"))
@@ -89,6 +93,7 @@ public class CityControllerTest {
         mockMvc.perform(put("/api/cities/1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(updatedCityJson))
+                .andDo(print())  // Added to log the response
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value("San Diego"))
                 .andExpect(jsonPath("$.country").value("USA"))
@@ -100,6 +105,7 @@ public class CityControllerTest {
     @Test
     public void testDeleteCity() throws Exception {
         mockMvc.perform(delete("/api/cities/1"))
+                .andDo(print())  // Added to log the response
                 .andExpect(status().isOk());
 
         verify(cityService).deleteCity(1);

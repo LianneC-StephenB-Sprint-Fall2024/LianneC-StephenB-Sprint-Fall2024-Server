@@ -1,57 +1,69 @@
 package com.keyin.city;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.keyin.airport.Airport;
 import jakarta.persistence.*;
 import java.util.List;
 
-
 @Entity
 public class City {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String name;
-    private String state;
-    private Integer population;
+    private String country;
+    private int population;
 
-    // Relationship with Airport
-
-
-    @JsonIgnore // This field will be ignored during serialization
-    @OneToMany(mappedBy = "city")
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Airport> airports;
-
-    //@OneToMany(mappedBy = "city")
-    //@JsonManagedReference  // Marks this side as the parent side
-    //private List<Airport> airports;
 
     public City() {}
 
-    public City(String name, String state, Integer population) {
+    public City(String name, String country, int population) {
         this.name = name;
-        this.state = state;
+        this.country = country;
         this.population = population;
     }
 
-    public Integer getId() { return id; }
-    public void setId(Integer id) { this.id = id; }
+    // Getters and setters
+    public Integer getId() {
+        return id;
+    }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-    public String getState() { return state; }
-    public void setState(String state) { this.state = state; }
+    public String getName() {
+        return name;
+    }
 
-    public Integer getPopulation() { return population; }
-    public void setPopulation(Integer population) { this.population = population; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public List<Airport> getAirports() { return airports; }
-    public void setAirports(List<Airport> airports) { this.airports = airports; }
+    public String getCountry() {
+        return country;
+    }
 
-        @Override
-    public String toString() {
-        return "City{id=" + id + ", name='" + name + "', state='" + state + "', population=" + population + "}";
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public int getPopulation() {
+        return population;
+    }
+
+    public void setPopulation(int population) {
+        this.population = population;
+    }
+
+    public List<Airport> getAirports() {
+        return airports;
+    }
+
+    public void setAirports(List<Airport> airports) {
+        this.airports = airports;
     }
 }

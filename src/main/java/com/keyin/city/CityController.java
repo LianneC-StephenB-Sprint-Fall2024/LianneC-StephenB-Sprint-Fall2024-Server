@@ -24,7 +24,6 @@ public class CityController {
         return cityService.getCityById(id);
     }
 
-    // New endpoint to get airports within a city
     @GetMapping("/{id}/airports")
     public List<Airport> getAirportsByCity(@PathVariable Integer id) {
         return cityService.getAirportsByCity(id);
