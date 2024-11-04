@@ -1,5 +1,9 @@
 package com.keyin.passenger;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.keyin.aircraft.Aircraft;
 import com.keyin.airport.Airport;
 import com.keyin.city.City;
@@ -9,6 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Entity
+@JsonIgnoreProperties({"aircraft", "airports"})
 public class Passenger {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +32,8 @@ public class Passenger {
             joinColumns = @JoinColumn(name = "passenger_id"),
             inverseJoinColumns = @JoinColumn(name = "aircraft_id")
     )
+   //@JsonBackReference
+    @JsonIgnoreProperties({"passengers", "airports", "aircraftList"})
     private List<Aircraft> aircraftList = new ArrayList<>();
 
     // New field to store the associated airport

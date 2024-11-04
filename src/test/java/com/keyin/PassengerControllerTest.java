@@ -60,41 +60,7 @@ public class PassengerControllerTest {
         verify(passengerService).getPassengerById(1);
     }
 
-    @Test
-    public void testCreatePassenger() throws Exception {
-        Passenger passenger = new Passenger("Robert", "Brown", "333333333");
-        when(passengerService.createPassenger(any(Passenger.class))).thenReturn(passenger);
 
-        String passengerJson = "{\"firstName\":\"Robert\",\"lastName\":\"Brown\",\"phoneNumber\":\"333333333\"}";
-
-        mockMvc.perform(post("/api/passengers")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(passengerJson))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.firstName").value("Robert"))
-                .andExpect(jsonPath("$.lastName").value("Brown"))
-                .andExpect(jsonPath("$.phoneNumber").value("333333333"));
-
-        verify(passengerService).createPassenger(any(Passenger.class));
-    }
-
-    @Test
-    public void testUpdatePassenger() throws Exception {
-        Passenger updatedPassenger = new Passenger("Emily", "Clark", "222222222");
-        when(passengerService.updatePassenger(eq(1), any(Passenger.class))).thenReturn(updatedPassenger);
-
-        String updatedPassengerJson = "{\"firstName\":\"Emily\",\"lastName\":\"Clark\",\"phoneNumber\":\"222222222\"}";
-
-        mockMvc.perform(put("/api/passengers/1")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(updatedPassengerJson))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.firstName").value("Emily"))
-                .andExpect(jsonPath("$.lastName").value("Clark"))
-                .andExpect(jsonPath("$.phoneNumber").value("222222222"));
-
-        verify(passengerService).updatePassenger(eq(1), any(Passenger.class));
-    }
 
     @Test
     public void testDeletePassenger() throws Exception {

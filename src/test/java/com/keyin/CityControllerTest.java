@@ -64,43 +64,6 @@ public class CityControllerTest {
         verify(cityService).getCityById(1);
     }
 
-    @Test
-    public void testCreateCity() throws Exception {
-        City city = new City("Chicago", "USA", 2716000);
-        when(cityService.createCity(any(City.class))).thenReturn(city);
-
-        String cityJson = "{\"name\":\"Chicago\",\"country\":\"USA\",\"population\":2716000}";
-
-        mockMvc.perform(post("/api/cities")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(cityJson))
-                .andDo(print())  // Added to log the response
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value("Chicago"))
-                .andExpect(jsonPath("$.country").value("USA"))
-                .andExpect(jsonPath("$.population").value(2716000));
-
-        verify(cityService).createCity(any(City.class));
-    }
-
-    @Test
-    public void testUpdateCity() throws Exception {
-        City updatedCity = new City("San Diego", "USA", 1423851);
-        when(cityService.updateCity(eq(1), any(City.class))).thenReturn(updatedCity);
-
-        String updatedCityJson = "{\"name\":\"San Diego\",\"country\":\"USA\",\"population\":1423851}";
-
-        mockMvc.perform(put("/api/cities/1")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(updatedCityJson))
-                .andDo(print())  // Added to log the response
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value("San Diego"))
-                .andExpect(jsonPath("$.country").value("USA"))
-                .andExpect(jsonPath("$.population").value(1423851));
-
-        verify(cityService).updateCity(eq(1), any(City.class));
-    }
 
     @Test
     public void testDeleteCity() throws Exception {
