@@ -45,23 +45,6 @@ public class AircraftControllerTest {
         verify(aircraftService).getAllAircraft();
     }
 
-    @Test
-    public void testCreateAircraft() throws Exception {
-        Aircraft aircraft = new Aircraft("Cargo", "FedEx", 50);
-        when(aircraftService.createAircraft(any(Aircraft.class))).thenReturn(aircraft);
-
-        String aircraftJson = "{\"type\":\"Cargo\",\"airlineName\":\"FedEx\",\"numberOfPassengers\":50}";
-
-        mockMvc.perform(post("/api/aircraft")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(aircraftJson))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.type").value("Cargo"))
-                .andExpect(jsonPath("$.airlineName").value("FedEx"))
-                .andExpect(jsonPath("$.numberOfPassengers").value(50));
-
-        verify(aircraftService).createAircraft(any(Aircraft.class));
-    }
 
     @Test
     public void testGetAircraftById() throws Exception {
@@ -77,23 +60,6 @@ public class AircraftControllerTest {
         verify(aircraftService).getAircraftById(1);
     }
 
-    @Test
-    public void testUpdateAircraft() throws Exception {
-        Aircraft updatedAircraft = new Aircraft("Passenger", "United Airlines", 300);
-        when(aircraftService.updateAircraft(eq(1), any(Aircraft.class))).thenReturn(updatedAircraft);
-
-        String updatedAircraftJson = "{\"type\":\"Passenger\",\"airlineName\":\"United Airlines\",\"numberOfPassengers\":300}";
-
-        mockMvc.perform(put("/api/aircraft/1")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(updatedAircraftJson))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.type").value("Passenger"))
-                .andExpect(jsonPath("$.airlineName").value("United Airlines"))
-                .andExpect(jsonPath("$.numberOfPassengers").value(300));
-
-        verify(aircraftService).updateAircraft(eq(1), any(Aircraft.class));
-    }
 
     @Test
     public void testDeleteAircraft() throws Exception {

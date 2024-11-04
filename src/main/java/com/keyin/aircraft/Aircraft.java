@@ -1,5 +1,6 @@
 package com.keyin.aircraft;
 
+import com.fasterxml.jackson.annotation.*;
 import com.keyin.airport.Airport;
 import com.keyin.passenger.Passenger;
 
@@ -9,6 +10,7 @@ import java.util.List;
 
 
 @Entity
+//@JsonIgnoreProperties({"airports"})
 public class Aircraft {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,16 +23,20 @@ public class Aircraft {
     }
 
     // Relationship with Airport (Many-to-Many)
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "aircraft_airport",
             joinColumns = @JoinColumn(name = "aircraft_id"),
             inverseJoinColumns = @JoinColumn(name = "airport_id")
     )
+    @JsonManagedReference
+    @JsonIgnoreProperties({"passengers"})
     private List<Airport> airports = new ArrayList<>();
 
     // Relationship with Passenger (Many-to-Many)
     @ManyToMany(mappedBy = "aircraftList")
+    //@JsonManagedReference
+    @JsonIgnoreProperties({"aircraftList", "passengers"})
     private List<Passenger> passengers = new ArrayList<>();
 
 

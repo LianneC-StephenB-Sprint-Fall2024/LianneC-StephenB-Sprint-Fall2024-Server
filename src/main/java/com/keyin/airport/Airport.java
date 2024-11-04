@@ -1,6 +1,6 @@
 package com.keyin.airport;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.*;
 import com.keyin.city.City;
 import com.keyin.aircraft.Aircraft;
 import jakarta.persistence.*;
@@ -8,6 +8,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
+@JsonIgnoreProperties({"aircraftList"})
 public class Airport {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,11 +20,15 @@ public class Airport {
     // Relationship with City
     @ManyToOne
     @JoinColumn(name = "city_id", nullable = false)
-    @JsonBackReference  // Uncomment if needed to avoid circular references during JSON serialization
+    @JsonIgnoreProperties({"passengers", "airports"})
+    //@JsonManagedReference
     private City city;
 
     // Relationship with Aircraft
     @ManyToMany(mappedBy = "airports")
+    @JsonIgnoreProperties({"passengers"})
+
+    @JsonBackReference
     private List<Aircraft> aircraft;
 
     // No-argument constructor for JPA

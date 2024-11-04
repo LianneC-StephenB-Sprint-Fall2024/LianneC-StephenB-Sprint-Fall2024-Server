@@ -46,6 +46,10 @@ public class AirportService {
         return null; // Handle not-found case appropriately as needed
     }
 
+    public Optional<Airport> findAirportById(Integer id) {
+        return airportRepository.findById(id);
+    }
+
     // Delete an airport by ID
     public void deleteAirport(Integer airportId) {
         airportRepository.deleteById(airportId);

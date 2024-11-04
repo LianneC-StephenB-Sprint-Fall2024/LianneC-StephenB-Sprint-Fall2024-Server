@@ -3,6 +3,7 @@ package com.keyin.airport;
 import com.keyin.city.City;
 import com.keyin.city.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -56,6 +57,17 @@ public class AirportController {
     @GetMapping("/byCity/{cityId}")
     public List<Airport> getAirportsByCity(@PathVariable Integer cityId) {
         return airportService.getAirportsByCity(cityId);
+    }
+
+    // Inside AirportController
+    @GetMapping("/{id}")
+    public ResponseEntity<Airport> getAirportById(@PathVariable Integer id) {
+        Optional<Airport> airportOptional = airportService.findAirportById(id); // assuming findAirportById is defined in AirportService
+        if (airportOptional.isPresent()) {
+            return ResponseEntity.ok(airportOptional.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     // New endpoint to get airport information by name, code, and cityId
