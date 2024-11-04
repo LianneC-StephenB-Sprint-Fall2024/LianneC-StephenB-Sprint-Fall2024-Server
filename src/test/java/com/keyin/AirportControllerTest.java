@@ -3,6 +3,7 @@ package com.keyin;
 import com.keyin.airport.Airport;
 import com.keyin.airport.AirportController;
 import com.keyin.airport.AirportService;
+import com.keyin.city.CityRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,18 +26,18 @@ public class AirportControllerTest {
     @MockBean
     private AirportService airportService;
 
+    @MockBean
+    private CityRepository cityRepository;
+
     @Test
     public void testGetListOfAirportsInDB() throws Exception {
-        // Arrange: Create a list of Airport objects to be returned by the mock service
         Airport airport1 = new Airport("John F. Kennedy International Airport", "JFK");
         Airport airport2 = new Airport("Los Angeles International Airport", "LAX");
         List<Airport> airportList = Arrays.asList(airport1, airport2);
 
-        // Mock the service to return the list of airports
         Mockito.when(airportService.getAllAirports()).thenReturn(airportList);
 
-        // Act and Assert: Perform the GET request and verify the response
-        mockMvc.perform(MockMvcRequestBuilders.get("/getAllAirports")
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/airports") // updated path
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].name").value("John F. Kennedy International Airport"))
